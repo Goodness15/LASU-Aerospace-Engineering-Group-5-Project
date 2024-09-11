@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore the art and science of paper aircraft with Airbus A320 PaperCraft, presented by LASU Aerospace Department students.">
+    <meta name="keywords" content="paper aircraft, paper planes, Airbus A320, LASU, Aerospace Department">
+    <title>Airbus A320 PaperCraft | LASU Aerospace</title>
+
+    <!-- Link to external font and styles -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Basic page styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #004080;
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header img {
+            max-width: 60px;
+            margin-right: 1rem;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+        }
+
+        /* Responsive Navbar */
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        .navbar a {
+            float: left;
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .navbar a.active {
+            background-color: #004080;
+            color: white;
+        }
+
+        .navbar .icon {
+            display: none;
+        }
+
+        /* Navbar Dropdown for mobile */
+        @media screen and (max-width: 768px) {
+            .navbar a {
+                float: none;
+                display: none;
+                text-align: left;
+            }
+
+            .navbar a.icon {
+                float: right;
+                display: block;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .navbar.responsive {
+                position: relative;
+            }
+
+            .navbar.responsive a.icon {
+                position: absolute;
+                right: 0;
+                top: 0;
+            }
+
+            .navbar.responsive a {
+                display: block;
+                text-align: left;
+            }
+        }
+
+        /* Main content styles */
+        .banner {
+            background: url('Airbus.jpg') no-repeat center center/cover;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            font-weight: bold;
+        }
+
+        section {
+            margin: 2rem auto;
+            padding: 2rem;
+            max-width: 1200px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .airbus-img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: #004080;
+            color: white;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        /* Welcome message style */
+        #welcome-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #004080;
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            font-size: 1.5rem;
+            z-index: 999;
+        }
+
+        /* Table Styling for Group Members */
+        .group-table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 80%;
+        }
+
+        .group-table th, .group-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .group-table th {
+            background-color: #004080;
+            color: white;
+        }
+
+        /* Sprinkles animation style */
+        .sprinkle {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: gold;
+            border-radius: 50%;
+            animation: sprinkle-animation 2s ease-out forwards;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        @keyframes sprinkle-animation {
+            from {
+                transform: scale(1);
+                opacity: 1;
+            }
+            to {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        /* Loading Screen Styles */
+        #loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            transition: opacity 0.5s ease-out;
+        }
+
+        #loading-screen img {
+            width: 150px;
+            animation: zoomInOut 2s infinite;
+        }
+
+        @keyframes zoomInOut {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Hide loading screen */
+        .hide-loading {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Styling for Aircraft Parts Image */
+        .aircraft-parts-image {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .aircraft-parts-image img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div id="loading-screen">
+        <img src="Airbus-A320.jpg" alt="Loading Airbus A320...">
+    </div>
+
+    <!-- Main Content -->
+    <header>
+        <img src="LASU-logo.jpg" alt="LASU Logo"> <!-- Add LASU logo -->
+        <h1>Airbus A320 PaperCraft</h1>
+    </header>
+
+    <!-- Responsive Navbar -->
+    <div class="navbar" id="myNavbar">
+        <a href="#about" class="active">About the Model</a>
+        <a href="#specs">Aircraft Specifications</a>
+        <a href="#instructions">How to Build</a>
+        <a href="#aircraft-parts">Aircraft Parts</a>
+        <a href="#parts-image">Parts Image</a>
+        <a href="#contact">Contact</a>
+        <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+            &#9776; <!-- Hamburger icon -->
+        </a>
+    </div>
+
+    <div class="banner">
+        Unleash Your Inner Pilot
+    </div>
+
+    <section id="about">
+        <h2>About Airbus A320 PaperCraft</h2>
+        <p>The Airbus A320 is one of the most popular aircraft in the world. Now, you can replicate it in paper form! Our model takes inspiration from the real Airbus A320, ensuring every fold helps bring the aircraft to life.</p>
+        <img src="Airbus-A320.jpg" alt="Airbus A320" class="airbus-img">
+    </section>
+
+    <section id="specs">
+        <h2>Real Airbus A320 vs. Papercraft Model</h2>
+        <ul>
+            <li><strong>Wingspan</strong>: 35.8m (Real) | 25cm (Papercraft)</li>
+            <li><strong>Length</strong>: 37.57m (Real) | 28cm (Papercraft)</li>
+            <li><strong>Cruise Speed</strong>: 828 km/h (Real) | 0.5 m/s (Papercraft, depending on throw!)</li>
+            <li><strong>Engine Type</strong>: Twin-engine jet (Real) | Paper folds (Papercraft)</li>
+        </ul>
+    </section>
+
+    <section id="instructions">
+        <h2>How to Build the Airbus A320 PaperCraft</h2>
+        <ol>
+            <li>Start with a clean A4 sheet of paper. Place it on a flat surface.</li>
+            <li>Fold the paper in half lengthwise, then unfold to leave a crease in the center.</li>
+            <li>Fold the top two corners to meet the center crease, creating a triangle shape at the top.</li>
+            <li>Fold the triangle down to create the nose of the aircraft.</li>
+                        <li>Continue folding the edges towards the center to refine the wings.</li>
+            <li>Final adjustments: Fold the wings and make sure everything is symmetrical.</li>
+        </ol>
+    </section>
+
+    <!-- Section: Primary Aircraft Parts -->
+    <section id="aircraft-parts">
+        <h2>Primary Parts of an Aircraft and Their Usefulness</h2>
+        <ul>
+            <li><strong>Fuselage</strong>: The main body of the aircraft, housing passengers, cargo, and cockpit.</li>
+            <li><strong>Wings</strong>: Provide lift and are responsible for keeping the aircraft in the air.</li>
+            <li><strong>Ailerons</strong>: Located on the wings, control roll and help turn the aircraft.</li>
+            <li><strong>Elevators</strong>: Located on the tail, control the pitch of the aircraft (up and down movement).</li>
+            <li><strong>Rudder</strong>: Located on the vertical tail fin, controls the yaw (left and right movement) of the aircraft.</li>
+            <li><strong>Flaps</strong>: Extend from the rear of the wings to increase lift at lower speeds, useful during takeoff and landing.</li>
+            <li><strong>Landing Gear</strong>: Supports the aircraft while on the ground and allows for safe takeoffs and landings.</li>
+            <li><strong>Engines</strong>: Provide the necessary thrust to propel the aircraft forward.</li>
+            <li><strong>Tailplane</strong>: Helps stabilize the aircraft and control its pitch.</li>
+        </ul>
+    </section>
+
+    <!-- Section for Aircraft Parts Image -->
+    <section id="parts-image" class="aircraft-parts-image">
+        <h2>Aircraft Parts Image</h2>
+        <!-- Add your labeled aircraft parts image here -->
+        <img src="aircraft-parts-labelled.jpg" alt="Labeled Aircraft Parts">
+        <img src="craft 1.jpg" alt="Labeled Aircraft Parts">
+        <img src="craft 2.jpg" alt="Labeled Aircraft Parts">
+        <img src="craft 3.jpg" alt="Labeled Aircraft Parts">
+        <img src="craft 4.jpg" alt="Labeled Aircraft Parts">
+        <img src="craft 5.jpg" alt="Labeled Aircraft Parts">
+    </section>
+
+    <!-- Group Members Table -->
+    <section class="students-info">
+        <h2>Project Team (Group 5) - LASU Aerospace Department</h2>
+        <p><strong>Group Members:</strong></p>
+        <table class="group-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Matric Number</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Iwalokun Doyinsola Diana</td>
+                    <td>230251022</td>
+                </tr>
+                <tr>
+                    <td>Adeyemi Sholape Wulaimat</td>
+                    <td>230251093</td>
+                </tr>
+                <tr>
+                    <td>Shuaib Fathia Oluwagbemisola</td>
+                    <td>230251028</td>
+                </tr>
+                <tr>
+                    <td>Omosanya Basit Ayomide</td>
+                    <td>230251072</td>
+                </tr>
+                <tr>
+                    <td>Ugwu Emmanuel Ikechukwu</td>
+                    <td>230251078</td>
+                </tr>
+                <tr>
+                    <td>Apoedeh Michael Oluwatimileyin</td>
+                    <td>230251085</td>
+                </tr>
+                <tr>
+                    <td>John Goodness Enejo</td>
+                    <td>230251008</td>
+                </tr>
+                <tr>
+                    <td>Adejuwon Damilola Ahmed</td>
+                    <td>230251014</td>
+                </tr>
+                <tr>
+                    <td>Onwukanjo Chimaroke John</td>
+                    <td>230251011</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <footer>
+        <p>LASU Aerospace Department | © 2024 | All Rights Reserved</p>
+        <p>Contact: <a href= mailto:amanapelumi@gmail.com style="color: white;">amanapelumi@gmail.com</a> | Whatsapp: <a href="https://wa.me/2349013864478" style="color: white;">https://wa.me/2349013864478</a></p>
+    </footer>
+
+    <!-- Welcome message -->
+    <div id="welcome-message"></div>
+
+    <!-- JavaScript for toggling navbar on mobile -->
+    <script>
+        function toggleMenu() {
+            const navbar = document.getElementById("myNavbar");
+            if (navbar.className === "navbar") {
+                navbar.className += " responsive";
+            } else {
+                navbar.className = "navbar";
+            }
+        }
+
+        // Loading screen removal and welcome message
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(function() {
+                loadingScreen.classList.add('hide-loading');
+            }, 3000); // Hide loading screen after 3 seconds
+
+            // Prompt for the user's name and display the welcome message
+            let userName = prompt("What is your name?");
+            if (userName) {
+                const welcomeMessage = `${userName}, welcome to Aerospace Projects!`;
+                const welcomeDiv = document.getElementById('welcome-message');
+                welcomeDiv.textContent = welcomeMessage;
+                welcomeDiv.style.display = 'block';
+
+                // Make the welcome message disappear after 5 seconds
+                setTimeout(function() {
+                    welcomeDiv.style.display = 'none';
+                }, 5000);  // The welcome message will disappear after 5 seconds
+
+                // Trigger the sprinkle animation
+                triggerSprinkles();
+            }
+        });
+
+        // Function to trigger sprinkle animation
+        function triggerSprinkles() {
+            const body = document.body;
+
+            for (let i = 0; i < 100; i++) {
+                const sprinkle = document.createElement('div');
+                sprinkle.className = 'sprinkle';
+                sprinkle.style.left = Math.random() * window.innerWidth + 'px';
+                sprinkle.style.top = Math.random() * window.innerHeight + 'px';
+                body.appendChild(sprinkle);
+
+                // Remove the sprinkle after the animation finishes
+                setTimeout(() => {
+                    sprinkle.remove();
+                }, 2000);  // Adjust the timing for the sprinkle to last a little longer
+            }
+        }
+    </script>
+
+</body>
+</html>
+
