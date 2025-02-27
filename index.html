@@ -650,6 +650,63 @@
         <p>LASU Aerospace Department | © 2024 | All Rights Reserved</p>
         <p>Contact: <a href="mailto:amanapelumi@gmail.com" style="color: white;">amanapelumi@gmail.com</a> | WhatsApp: <a href="https://wa.me/2349013864478" style="color: white;">Chat on WhatsApp</a></p>
     </footer>
+<!-- Welcome message -->
+    <div id="welcome-message"></div>
 
+    <!-- JavaScript for toggling navbar on mobile -->
+    <script>
+        function toggleMenu() {
+            const navbar = document.getElementById("myNavbar");
+            if (navbar.className === "navbar") {
+                navbar.className += " responsive";
+            } else {
+                navbar.className = "navbar";
+            }
+        }
+
+        // Loading screen removal and welcome message
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loading-screen');
+            setTimeout(function() {
+                loadingScreen.classList.add('hide-loading');
+            }, 3000); // Hide loading screen after 3 seconds
+
+            // Prompt for the user's name and display the welcome message
+            let userName = prompt("What is your name?");
+            if (userName) {
+                const welcomeMessage = `${userName}, welcome to Aerospace Projects!`;
+                const welcomeDiv = document.getElementById('welcome-message');
+                welcomeDiv.textContent = welcomeMessage;
+                welcomeDiv.style.display = 'block';
+
+                // Make the welcome message disappear after 5 seconds
+                setTimeout(function() {
+                    welcomeDiv.style.display = 'none';
+                }, 5000);  // The welcome message will disappear after 5 seconds
+
+                // Trigger the sprinkle animation
+                triggerSprinkles();
+            }
+        });
+
+        // Function to trigger sprinkle animation
+        function triggerSprinkles() {
+            const body = document.body;
+
+            for (let i = 0; i < 100; i++) {
+                const sprinkle = document.createElement('div');
+                sprinkle.className = 'sprinkle';
+                sprinkle.style.left = Math.random() * window.innerWidth + 'px';
+                sprinkle.style.top = Math.random() * window.innerHeight + 'px';
+                body.appendChild(sprinkle);
+
+                // Remove the sprinkle after the animation finishes
+                setTimeout(() => {
+                    sprinkle.remove();
+                }, 2000);  // Adjust the timing for the sprinkle to last a little longer
+            }
+        }
+    </script>
+    
 </body>
                    </html>
